@@ -36,10 +36,11 @@
           const anchorId = '<%= event.id %>-anchor'
           const eventId = '<%= event.id %>'
           const baseTweetUrl = 'https://twitter.com/share'
+          const hashtag = '熊野寮祭2020'
 
           const text = `熊野寮祭「${title}」`
           const targetUrl = `https://${document.location.host}/ryosai2020/events/${eventId}.html`
-          const tweetUrl = `${baseTweetUrl}?url=${encodeURIComponent(targetUrl)}&text=${encodeURIComponent(text)}&via=kumanofes&lang=ja&related=kumanofes&hashtags=kumanofes2020`
+          const tweetUrl = `${baseTweetUrl}?url=${encodeURIComponent(targetUrl)}&text=${encodeURIComponent(text)}&lang=ja&related=kuma_d_fes&hashtags=${encodeURIComponent(hashtag)}`
 
           const anchor = document.getElementById(anchorId);
           anchor.href = tweetUrl
