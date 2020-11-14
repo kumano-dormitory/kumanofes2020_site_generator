@@ -43,6 +43,16 @@ input:checked + .tab {
 
 /* チェックが入っているラジオボタンに対応するタブの中身を表示する */
 #regulars_check:checked ~ #regulars_content { display: block; }
+#reg1127_check:checked ~ #reg1127_content { display: block; }
+#reg1128_check:checked ~ #reg1128_content { display: block; }
+#reg1129_check:checked ~ #reg1129_content { display: block; }
+#reg1130_check:checked ~ #reg1130_content { display: block; }
+#reg1201_check:checked ~ #reg1201_content { display: block; }
+#reg1202_check:checked ~ #reg1202_content { display: block; }
+#reg1203_check:checked ~ #reg1203_content { display: block; }
+#reg1204_check:checked ~ #reg1204_content { display: block; }
+#reg1205_check:checked ~ #reg1205_content { display: block; }
+#reg1206_check:checked ~ #reg1206_content { display: block; }
 #guerrillas_check:checked ~ #guerrillas_content { display: block; }
 #permanents_check:checked ~ #permanents_content{ display: block; }
 

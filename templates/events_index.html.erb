@@ -2,13 +2,22 @@
 
 <div class="tabbox" id="events_tabbox">
     <%# 企画の種類でタブを作成 %>
-    <input type="radio" name="tabset" id="regulars_check" checked><label for="regulars_check" class="tab">企画</label>
+    <input type="radio" name="tabset" id="reg1127_check" checked><label for="reg1127_check" class="tab">11/27(金)</label>
+    <input type="radio" name="tabset" id="reg1128_check"><label for="reg1128_check" class="tab">28(土)</label>
+    <input type="radio" name="tabset" id="reg1129_check"><label for="reg1129_check" class="tab">29(日)</label>
+    <input type="radio" name="tabset" id="reg1130_check"><label for="reg1130_check" class="tab">30(月)</label>
+    <input type="radio" name="tabset" id="reg1201_check"><label for="reg1201_check" class="tab">12/1(火)</label>
+    <input type="radio" name="tabset" id="reg1202_check"><label for="reg1202_check" class="tab">2(水)</label>
+    <input type="radio" name="tabset" id="reg1203_check"><label for="reg1203_check" class="tab">3(木)</label>
+    <input type="radio" name="tabset" id="reg1204_check"><label for="reg1204_check" class="tab">4(金)</label>
+    <input type="radio" name="tabset" id="reg1205_check"><label for="reg1205_check" class="tab">5(土)</label>
+    <input type="radio" name="tabset" id="reg1206_check"><label for="reg1206_check" class="tab">6(日)</label>
     <input type="radio" name="tabset" id="guerrillas_check"><label for="guerrillas_check" class="tab">ゲリラ企画</label>
     <input type="radio" name="tabset" id="permanents_check"><label for="permanents_check" class="tab">常設企画</label>
 
-    <%# 「企画」タブの中身を作成 %>
-    <div class="tabcontent" id="regulars_content">
-        <% @regulars.group_by { |e| e.period.date }.each do |date, events| %>
+    <% @regulars.group_by { |e| e.period.date }.each do |date, events| %>
+        <%# 「日付」タブの中身を作成 %>
+        <div class="tabcontent" id="reg<%= date.strftime('%m%d') %>_content">
             <%# 企画の日付を表示 %>
             <div class="target-date"><a href='/ryosai2020/<%= date %>.html'><%= date %></a></div>
 
@@ -23,8 +32,8 @@
             <% end %>
             </div>
             </br>
-        <% end %>
-    </div>
+        </div>
+    <% end %>
 
     <%# 「ゲリラ企画」タブの中身を作成 %>
     <div class="tabcontent" id="guerrillas_content">
