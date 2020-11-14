@@ -1,0 +1,56 @@
+<h2><%= @title %></h2>
+
+<div class="tabbox" id="events_tabbox">
+    <%# 企画の種類でタブを作成 %>
+    <input type="radio" name="tabset" id="regulars_check" checked><label for="regulars_check" class="tab">企画</label>
+    <input type="radio" name="tabset" id="guerrillas_check"><label for="guerrillas_check" class="tab">ゲリラ企画</label>
+    <input type="radio" name="tabset" id="permanents_check"><label for="permanents_check" class="tab">常設企画</label>
+
+    <%# 「企画」タブの中身を作成 %>
+    <div class="tabcontent" id="regulars_content">
+        <% @regulars.group_by { |e| e.period.date }.each do |date, events| %>
+            <%# 企画の日付を表示 %>
+            <div class="target-date"><a href='/ryosai2020/<%= date %>.html'><%= date %></a></div>
+
+            <%# 企画の画像を2列に並べて表示 %>
+            <div class="img-2col">
+            <% events.each do |event| %>
+                <% if !event.compressed_path.nil? %>
+                    <a href='/ryosai2020/<%= event.period.date %>.html#<%= event.id %>'>
+                        <img src="/ryosai2020/<%= IMAGE_BASE_PATH %>/<%= event.compressed_path %>" class="event-image"/>
+                    </a>
+                <% end %>
+            <% end %>
+            </div>
+            </br>
+        <% end %>
+    </div>
+
+    <%# 「ゲリラ企画」タブの中身を作成 %>
+    <div class="tabcontent" id="guerrillas_content">
+        <%# ゲリラ企画の画像を2列に並べて表示 %>
+        <div class="img-2col">
+        <% @guerrillas.each do |event| %>
+            <% if !event.compressed_path.nil? %>
+                <a href='/ryosai2020/guerrilla.html#<%= event.id %>'>
+                    <img src="/ryosai2020/<%= IMAGE_BASE_PATH %>/<%= event.compressed_path %>" class="event-image"/>
+                </a>
+            <% end %>
+        <% end %>
+        </div>
+    </div>
+
+    <%# 「常設企画」タブの中身を作成 %>
+    <div class="tabcontent" id="permanents_content">
+        <%# 常設企画の画像を2列に並べて表示 %>
+        <div class="img-2col">
+        <% @permanents.each do |event| %>
+            <% if !event.compressed_path.nil? %>
+                <a href='/ryosai2020/permanent.html#<%= event.id %>'>
+                    <img src="/ryosai2020/<%= IMAGE_BASE_PATH %>/<%= event.compressed_path %>" class="event-image"/>
+                </a>
+            <% end %>
+        <% end %>
+        </div>
+    </div>
+</div>

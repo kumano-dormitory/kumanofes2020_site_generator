@@ -1,0 +1,46 @@
+<h2><%= @title %></h2>
+
+<% @events.each do |event| %>
+  <p style="margin: 0px auto 50px auto">
+      <h3 id='<%= event.id %>' style='width: 100%; display: flex;'>
+        <div>
+          <a href='#<%= event.id %>' style='text-decoration: none; color: black;'>
+            <i class="fa fa-paragraph" aria-hidden="true"></i>
+            <%= event.title %>
+          </a>
+        </div>
+        <div style='margin-left: auto; margin-right: 1em;'>
+          <a id='<%= event.id %>-anchor' target="_blank">
+            <i class="fa fa-twitter-square fa-lg" style='color: black;' aria-hidden="true"></i>
+          </a>
+        </div>
+      </h3>
+      <hr />
+      <dl>
+          <dt style='font-weight: bold;'>場所</dt><dd><%= event.place %></dd>
+          <dt style='font-weight: bold;'>時間帯</dt><dd><%= event.period_formatted %></dd>
+          <dt style='font-weight: bold;'>説明</dt><dd><%= event.description %></dd>
+          <% if !event.url.nil? %>
+          <dt style='font-weight: bold;'>URL</dt><dd><a href='<%= event.url %>'><%= event.url %></a></dd>
+          <% end %>
+      </dl>
+      <% if !event.picture_path.nil? %>
+        <img src="/ryosai2020/<%= IMAGE_BASE_PATH %>/<%= event.picture_path %>" class="event-image"/>
+      <% end %>
+      <script>
+        (function(){
+          const title = '<%= event.title %>'
+          const anchorId = '<%= event.id %>-anchor'
+          const eventId = '<%= event.id %>'
+          const baseTweetUrl = 'https://twitter.com/share'
+
+          const text = `熊野寮祭「${title}」`
+          const targetUrl = `https://${document.location.host}/ryosai2020/events/${eventId}.html`
+          const tweetUrl = `${baseTweetUrl}?url=${encodeURIComponent(targetUrl)}&text=${encodeURIComponent(text)}&via=kumanofes&lang=ja&related=kumanofes&hashtags=kumanofes2020`
+
+          const anchor = document.getElementById(anchorId);
+          anchor.href = tweetUrl
+        })()
+      </script>
+  </p>
+<% end %>
