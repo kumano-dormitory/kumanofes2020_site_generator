@@ -23,6 +23,9 @@
           <% if !event.url.nil? %>
           <dt style='font-weight: bold;'>URL</dt><dd><a href='<%= event.url %>'><%= event.url %></a></dd>
           <% end %>
+          <% if !event.twitter_id.nil? %>
+          <dt style='font-weight: bold;'>企画または企画者のTwitter</dt><dd><a href="https://twitter.com/<%= event.twitter_id %>">@<%= event.twitter_id %></a></dd>
+          <% end %>
       </dl>
       <% if !event.picture_path.nil? %>
         <img src="/ryosai2020/<%= IMAGE_BASE_PATH %>/<%= event.picture_path %>" class="event-image"/>

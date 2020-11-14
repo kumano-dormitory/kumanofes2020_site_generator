@@ -1,7 +1,7 @@
 require 'csv'
 
 class Event
-  attr_reader :type, :title, :place, :period, :description, :picture_path, :compressed_path, :url, :id
+  attr_reader :type, :title, :place, :period, :description, :picture_path, :compressed_path, :url, :id, :twitter_id
 
   def self.create_list_from_csv(csv_filename)
     events = CSV.read(csv_filename, headers: true, encoding: 'UTF-8').map(&:to_h).map.with_index do |row, index|
@@ -9,7 +9,7 @@ class Event
       type_str = if row['type'] == "0" then "regular" elsif row['type'] == "1" then "permanent" else "guerrilla" end
       image_dir = if row['type'] == "0" then row['start_day'] elsif row['type'] == "1" then "permanent" else "guerrilla" end
       self.new(row['id']&.strip, type_str, row['title']&.strip, row['place']&.strip, period, row['details']&.strip,
-        "images/#{image_dir}/#{row['path']}.#{row['ext']}", "images/0000/#{row['path']}.#{row['ext']}", nil)
+        "images/#{image_dir}/#{row['path']}.#{row['ext']}", "images/0000/#{row['path']}.#{row['ext']}", nil, row['twitter']&.strip)
     end
     {
       regulars: events.select { |event| event.type == 'regular' },
@@ -18,7 +18,7 @@ class Event
     }
   end
 
-  def initialize(index, type, title, place, period, description, picture_path, compressed_path, url)
+  def initialize(index, type, title, place, period, description, picture_path, compressed_path, url, twitter_id)
     @id = index
     @type = type
     @title = title
@@ -28,6 +28,7 @@ class Event
     @picture_path = picture_path
     @compressed_path = compressed_path
     @url = url
+    @twitter_id = twitter_id
   end
 
   def period_formatted
