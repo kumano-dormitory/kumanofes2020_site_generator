@@ -9,7 +9,7 @@ class Event
       type_str = if row['type'] == "0" then "regular" elsif row['type'] == "1" then "permanent" else "guerrilla" end
       image_dir = if row['type'] == "0" then row['start_day'] elsif row['type'] == "1" then "permanent" else "guerrilla" end
       self.new(row['id']&.strip, type_str, row['title']&.strip, row['place']&.strip, period, row['details']&.strip,
-        "images/#{image_dir}/#{row['path']}.#{row['ext']}", "images/0000/#{row['path']}.#{row['ext']}", nil, row['twitter']&.strip)
+        "images/#{image_dir}/#{row['path']}.#{row['ext']}", "images/0000/#{row['path']}.#{row['ext']}", row['url'], row['twitter']&.strip)
     end
     {
       regulars: events.select { |event| event.type == 'regular' },
